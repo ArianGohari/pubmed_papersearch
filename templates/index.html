@@ -1,0 +1,56 @@
+<!-- Arian Gohari -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Set title and browser icon -->
+    <title>Paper Search</title>
+    <link rel="icon" href="{{ url_for('static', filename='svg/ps_logo_small.svg') }}">
+
+    <!-- Include Bulma CSS and JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+    <!-- Include local CSS and JS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+  </head>
+  <body>
+  <section class="section">
+    <div class="container is-max-desktop">
+
+      <!-- Logo (SVG) -->
+      <img class="logo" alt="logo" src="{{ url_for('static', filename='svg/ps_logo.svg') }}">
+
+      <!-- Input Section -->
+      <form action="/" method="get" onsubmit="onSubmit()">
+        <p id="control" class="control has-icons-left">
+          <input class="input is-rounded mb-2" type="text" placeholder="Search for paper" value="{{ keyword }}" name="keyword">
+          <span class="icon is-small is-left">
+            <i class="fas fa-search"></i>
+          </span>
+        </p>
+      </form>
+
+      <!-- Search Results Section -->
+      {% for paper in papers %}
+      <div class="card mt-4">
+        <div class="card-content">
+          <div class="content">
+            <a href="{{ paper.url }}" target="_blank">{{ paper.title|safe }}</a>
+            <p style="font-size: 14px">{{ paper.snippet|safe }}</p>
+            <p style="color: #008516; font-size: 11px;">{{ paper.journal_name|safe}}, {{ paper.date_str|safe }}</p>
+            <p style="color: #929292; font-size: 11px;">{{ paper.authors_str|safe }}</p>
+            <p style="color: #FF0000; font-size: 11px;">Rank: {{ paper.total_rank }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+  </section>
+  </body>
+</html>

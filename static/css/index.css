@@ -1,0 +1,16 @@
+/* Arian Gohari */
+
+/* Display Link violet when clicked before */
+a:visited {
+  color: #4b2f89;
+}
+
+/* Placing of SVG logo */
+.logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  max-width: 600px;
+}
